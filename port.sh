@@ -154,7 +154,7 @@ mkdir -p build/portrom/images/
 # 提取分区
 if [[ ${baserom_type} == 'payload' ]];then
     blue "正在提取底包 [payload.bin]" "Extracting files from BASEROM [payload.bin]"
-    payload-dumper --out build/baserom/images/ $baserom
+    payload-dumper-go -o build/baserom/images/ $baserom
     green "底包 [payload.bin] 提取完毕" "[payload.bin] extracted."
 elif [[ ${baserom_type} == 'br' ]];then
     blue "正在提取底包 [new.dat.br]" "Extracting files from BASEROM [*.new.dat.br]"
@@ -196,7 +196,7 @@ elif [[ ${portrom_type} == "fastboot" ]];then
     green "移植包 [super.img] 提取完毕" "[super.img] extracted."
 else
     blue "正在提取移植包 [payload.bin]" "Extracting files from PORTROM [payload.bin]"
-    payload-dumper --partitions system,product,system_ext,mi_ext --out build/portrom/images/ $portrom
+    payload-dumper -p system,product,system_ext,mi_ext --out build/portrom/images/ $portrom
     green "移植包 [payload.bin] 提取完毕" "[payload.bin] extracted."
 fi
 
