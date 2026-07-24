@@ -196,7 +196,7 @@ elif [[ ${portrom_type} == "fastboot" ]];then
     green "移植包 [super.img] 提取完毕" "[super.img] extracted."
 else
     blue "正在提取移植包 [payload.bin]" "Extracting files from PORTROM [payload.bin]"
-    payload-dumper -p system,product,system_ext,mi_ext --out build/portrom/images/ $portrom
+    payload-dumper-go -p system,product,system_ext,mi_ext --out build/portrom/images/ $portrom
     green "移植包 [payload.bin] 提取完毕" "[payload.bin] extracted."
 fi
 
