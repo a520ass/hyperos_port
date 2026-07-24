@@ -808,7 +808,7 @@ fi
 unlock_device_feature "whether support fps change " "bool" "support_smart_fps"
 unlock_device_feature "smart fps value" "integer" "smart_fps_value" "${maxFps}"
 
-if [[ ${base_rom_code} == "munch" ]];then
+if [[ ${base_rom_code} == "alioth" ]];then
     unlock_device_feature "whether support dc backlight " "bool" "support_dc_backlight"
     unlock_device_feature "whether backlight bit switch " "bool" "support_backlight_bit_switch"
 fi
@@ -873,7 +873,7 @@ if [[ -f "${targetSettingsAPK}" ]];then
     java -jar bin/apktool/APKEditor.jar b -i tmp/Settings -o $targetSettingsAPK -f > /dev/null 2>&1
 fi
 
-if [[ ${port_rom_code} == "munch_cn" ]];then
+if [[ ${port_rom_code} == "alioth_cn" ]];then
     # Add missing camera permission android.permission.TURN_SCREEN_ON
     # this missing permission will cause device stuck on boot with higher custom Camera(eg: 5.2.0.XX) integrated
     sed -i 's|<permission name="android.permission.SYSTEM_CAMERA" />|<permission name="android.permission.SYSTEM_CAMERA" />\n\t\t<permission name="android.permission.TURN_SCREEN_ON" />|' build/portrom/images/product/etc/permissions/privapp-permissions-product.xml
@@ -937,7 +937,7 @@ if [[ -d "devices/common" ]];then
         unzip -oq devices/common/nfc_a15.zip -d build/portrom/images/
         echo "ro.vendor.nfc.dispatch_optim=1" >> build/portrom/images/vendor/build.prop
     fi
-    if [[ $base_rom_code == "munch" ]] && [[ ${port_android_version} == "15" ]]; then
+    if [[ $base_rom_code == "alioth" ]] && [[ ${port_android_version} == "15" ]]; then
         sourceCamera=$(find build/baserom/images/ -type f -name "MiuiCamera.apk")
         targetCamera=$(find build/portrom/images/ -type d -name "MiuiCamera")
         cp -rf $sourceCamera $targetCamera/
